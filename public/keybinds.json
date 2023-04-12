@@ -1,0 +1,17 @@
+[
+  {
+    "bind": "1",
+    "action": "toggleFullscreenScoreboard",
+    "description": "Toggle Fullscreen Scoreboard"
+  },
+  {
+    "bind": "2",
+    "action": "toggleTeamComparison",
+    "description": "Toggle Team Comparison"
+  },
+  {
+    "bind": "3",
+    "action": "toggleTeamDetails",
+    "description": "Toggle Team Details"
+  }
+]

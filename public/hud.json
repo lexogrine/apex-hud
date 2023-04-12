@@ -1,0 +1,13 @@
+{
+    "name":"Apex Legends Test HUD",
+    "version":"1.0.0",
+    "author":"Lexogrine",
+    "legacy": false,
+    "radar": true,
+    "killfeed": true,
+    "game":"apexlegends",
+    "boltobserv":{
+        "css":true,
+        "maps":true
+    }
+}

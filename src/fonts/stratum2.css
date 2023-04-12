@@ -1,0 +1,15 @@
+
+@font-face {
+    font-family: 'Stratum2';
+    font-style: normal;
+    src: url('./Stratum2/Stratum2 Bold Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: "GermaniaOne";
+    font-style: normal;
+    src: url('./GermaniaOne-Regular.ttf') format("truetype");
+}
+@font-face {
+    font-family: "Oswald";
+    src: url('./OwaldFonts.ttf') format("truetype");
+}

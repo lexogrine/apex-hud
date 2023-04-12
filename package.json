@@ -1,0 +1,62 @@
+{
+  "name": "apex_hud",
+  "version": "1.0.0",
+  "homepage": "./",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^5.7.0",
+    "@types/jest": "24.0.19",
+    "@types/node": "12.11.1",
+    "@types/react": "16.9.9",
+    "@types/react-chartjs-2": "^2.5.7",
+    "@types/react-dom": "16.9.2",
+    "apexlegendsgsi": "file:../../apexlegendsgsi",
+    "heatmap.js": "^2.0.5",
+    "query-string": "^6.12.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-minimal-pie-chart": "^8.4.0",
+    "react-scripts": "4.0.0",
+    "recharts": "^2.5.0",
+    "socket.io-client": "^4.1.3",
+    "typescript": "3.6.4",
+    "uuid": "^9.0.0",
+    "uuidv4": "^6.2.13"
+  },
+  "license": "GPL-3.0",
+  "scripts": {
+    "zip": "npm-build-zip",
+    "start": "craco start",
+    "build": "react-scripts build",
+    "build-deploy-linux": "react-scripts build && cp -r ./build ~/HUDs/ && rsync -a ~/HUDs/build ~/HUDs/apexlegends",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "pack": "npm run build && npm run zip",
+    "sign": "npm run build && node sign.js && npm-build-zip --name=signed"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@types/heatmap.js": "^2.0.37",
+    "@types/history": "^4.7.5",
+    "internal-ip": "^6.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "npm-build-zip": "^1.0.2",
+    "open": "^8.0.2",
+    "sass": "^1.32.5"
+  }
+}
