@@ -13,5 +13,10 @@
     "bind": "3",
     "action": "toggleTeamDetails",
     "description": "Toggle Team Details"
+  },
+  {
+    "bind": "4",
+    "action": "toggleLeaderboardMode",
+    "description": "Toggle Top Leaderboard Mode"
   }
 ]

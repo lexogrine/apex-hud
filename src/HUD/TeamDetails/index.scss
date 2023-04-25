@@ -1,8 +1,111 @@
 .team-details {
   position: absolute;
-  width: 80%;
-  height: 50%;
-  background-color: rgba(0, 19, 2, 0.767);
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  z-index: 10;
+  background: linear-gradient(248.99deg, #C73742 19.12%, #FEB139 101.03%);
+  h3 {
+    
+    font-weight: 500;
+    font-size: 90px;
+    text-align: center;
+    margin-bottom: 108px;
+  }
+  .players {
+    display: flex;
+    gap: 90px;
+    justify-content: center;
+  }
+}
+
+.player-tab {
+  border-radius: 8px;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  width: 452px;
+  &.team-based {
+    width: 802px;
+    .avatars {
+      width: 100%;
+      height: 100%;
+    }
+    .top {
+      margin: 0 60px;
+      width: unset;
+    }
+    .details {
+      text-align: center;
+    }
+    .content {
+      flex-direction: column;
+    }
+    .team-players {
+      display: flex;
+      .team-player {
+        flex:1;
+        width: 280px;
+      }
+    }
+  }
+  .top {
+    height: 217px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    img {
+      position: absolute;
+      height: 280px;
+    }
+    .avatar {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+  .details {
+    margin-top: 10px;
+  }
+  .content {
+    background-color: white;
+    color: #060404;
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    padding: 30px 60px;
+    
+height: 396px;
+  }
+  .entry {
+    font-weight: 400;
+    font-size: 24px;
+    margin: 7px 0;
+    .title {
+    }
+    .value {
+      color:  #C73843;
+      margin-left: 15px;
+      font-weight: 500;
+    }
+  }
+  .playername {
+    font-weight: 500;
+    font-size: 40px;
+    text-align: center;
+  }
+  .hero {
+    text-align: center;
+    font-weight: 400;
+    font-size: 24px;
+  }
 }

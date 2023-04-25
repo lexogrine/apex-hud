@@ -9,11 +9,12 @@ body,
 
 body {
   margin: 0;
-  font-family: 'Roboto','Stratum2', 'Montserrat', sans-serif;
+  font-family: 'Oswald','Stratum2', 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /*background-image: url('./HUD/image.png');/**/
   background-position: bottom;
+  background-size: cover;
 }
 
 @font-face {

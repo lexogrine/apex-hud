@@ -3,9 +3,47 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 10%;
-  background-color: rgba(0, 19, 2, 0.767);
+  height: 72px;
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-size: 21px;
+  align-items: center;
+  text-transform: uppercase;
+  .topbar-team {
+    flex:1;
+    display: flex;
+    align-items: center;
+    padding: 0 17px;
+    height: 100%;
+    position: relative;
+    &.order-1 .border-bottom {
+      background: #761BCA;
+    }
+    &.order-2 .border-bottom {
+      background: #C22987;
+    }
+    &.order-3 .border-bottom {
+      background: #F3A712;
+    }
+    .border-bottom {
+      position: absolute;
+      width: 100%;
+      height: 5px;
+      bottom: -5px;
+      left:0px;
+    }
+    .order {
+      width: 48px;
+      height: 48px;
+
+      background: rgba(255,255,255,0.2);
+      margin-right: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }

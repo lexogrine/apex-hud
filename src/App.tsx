@@ -14,7 +14,7 @@ export const socket = io(true ? `localhost:${port}` : '/');
 
 console.log('dev i guess')
 socket.on('update', (data: any) => {
-	console.log("update...");
+	//console.log("update...");
 	ApexLegends.digest(data);
 });
 
@@ -46,6 +46,7 @@ class App extends React.Component<any, { game: ApexLegendsState | null, match: M
 
 	verifyPlayers = async (game: ApexLegendsState) => {
 		const extensioned = await api.players.get();
+		const teamsExtensions = await api.teams.get();
 
 		const players: PlayerExtension[] = extensioned
 			.map(player => (
@@ -56,11 +57,25 @@ class App extends React.Component<any, { game: ApexLegendsState | null, match: M
 					steamid: player.steamid,
 					country: player.country,
 					avatar: player.avatar,
+					teamId: player.team,
 					extra: player.extra,
 				})
 			);
+		
+		ApexLegends.teams.push(...teamsExtensions.map(team => ({
+			id: team._id,
+			name: team.name,
+			country: team.country,
+			logo: team.logo,
+			map_score: 0,
+			extra: {}
+		})));
+
+		console.log(ApexLegends.teams);
 
 		ApexLegends.players = players;
+
+	//	console.log(ApexLegends.players)
 	}
 
 
@@ -141,7 +156,7 @@ class App extends React.Component<any, { game: ApexLegendsState | null, match: M
 	}
 	render() {
 		if (!this.state.game) {
-			return <div>No data got yet</div>;
+			return null;
 		}
 		return (
 			<Layout game={this.state.game} match={this.state.match}/>

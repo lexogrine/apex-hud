@@ -1,12 +1,90 @@
+@keyframes Pulse {
+  0% {
+    opacity: 1;
+    width: 20px;
+    height: 20px;
+  }
+  30% {
+    opacity: 0;
+  }
+  50% {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+  }
+  55% {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+  }
+  65% {
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+  }
+  68% {
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+  }
+
+  84% {
+    opacity: 1;
+    width: 20px;
+    height: 20px;
+  }
+
+}
+
 .event {
-  background-color: rgba(0, 19, 2, 0.767);
-  display: block;
-  width: 100%;
+  display: flex;
+  
+  min-width: 300px;
+  flex-direction: column;
+  font-size: 21px;
+  .content {
+    padding: 0 50px;
+    height: 93px;
+    display: flex;
+    align-items: center;
+    
+    background: rgba(0, 0, 0, 0.72);
+    text-transform: uppercase;
+  }
+  .event-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 30px;
+  }
+  .circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid white;
+  }
+  &.ringStartClosing {
+    .circle {
+      animation: Pulse 1.5s infinite;
+    }
+  }
+  &.squadEliminated, &.ringFinishedClosing {
+    background: linear-gradient(90.02deg, #FEB036 20.79%, #C6343F 97.07%);
+  }
+
+  .border {
+    height: 8px;
+    width: 100%;
+    background: linear-gradient(90.02deg, #FEB036 20.79%, #C6343F 97.07%);
+  }
 }
 
 .hud-popup-panel {
-  background-color: rgba(0, 19, 2, 0.767);
   display: block;
-  width: 40%;
   position: absolute;
+  top: 420px;
 }

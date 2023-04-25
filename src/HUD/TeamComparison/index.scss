@@ -1,14 +1,18 @@
 .team-comparison {
   position: absolute;
-  width: 80%;
-  height: 50%;
-  background-color: rgba(0, 19, 2, 0.767);
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(248.99deg, #C73742 19.12%, #FEB139 101.03%);
+
   display: flex;
   flex-direction: row;
+  gap: 35px;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
 }
 
 .team-panel {
-  background-color: rgba(0, 19, 2, 0.767);
   display: flex;
   flex-direction: column;
   flex-grow: 1;

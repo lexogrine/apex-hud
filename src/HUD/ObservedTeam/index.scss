@@ -1,10 +1,111 @@
 .observed-team {
   position: absolute;
-  top: 60%;
-  left: 0;
-  width: 20%;
-  height: 10%;
-  background-color: rgba(0, 19, 2, 0.767);
+  top: 450px;
+  right: 0;
+    height: 182px;
+  background-color: rgba(0, 0, 0, 0.74);
   display: flex;
   flex-direction: column;
+  .players {
+    display: flex;
+    flex:1;
+    margin: 0 30px;
+    .player {
+      width: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      text-transform: uppercase;
+      font-weight: 400;
+      gap: 18px;
+
+      &.observed {
+        .avatar {
+          background-color: #FEB036;
+          position: absolute;
+          bottom:0;
+          width: 117px;
+          height: 117px;
+        }
+      }
+    }
+  }
+  .avatar-container {
+    width: 85px;
+    height: 85px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .avatar {
+    background-color: #c6343f;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    img{
+      height: 95%;
+    }
+  }
+  .color-bar {
+    height: 8px;
+    width: 100%;
+    background: linear-gradient(90.02deg, #FEB036 20.79%, #C6343F 97.07%);
+  }
+}
+.observed-team-details {
+  position: absolute;
+  min-width: 330px;
+  height: 100px;
+  left: 0px;
+  top: 603px;
+
+  background: rgba(0, 0, 0, 0.64);
+  display: flex;
+  flex-direction: column;
+  .team-border {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90.02deg, #FEB036 20.79%, #C6343F 97.07%);
+  }
+  .info {
+    display: flex;
+    height: 100%;
+    .name {
+      flex: 1;
+      height: 100%;
+      align-items: center;
+      display: flex;
+      font-weight: 500;
+      font-size: 21px;
+      text-transform: uppercase;
+    }
+    .kills {
+      width: 120px;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.34);
+      align-items: center;
+      display: flex;
+      font-size: 37px;
+      justify-content: center;
+    }
+  }
+  .order {
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
+
+    background: rgba(255,255,255,0.2);
+    margin-right: 24px;
+    border-radius: 50%;
+    display: flex;
+    margin-left: 24px;
+    align-items: center;
+    justify-content: center;
+  }
 }
