@@ -146,13 +146,10 @@ export default class Layout extends React.Component<Props, State> {
           count={3}
         />
         <TeamComparison
-          show={this.state.showTeamComparison && sortedSquads.length >= 2}
-          squadLeft={sortedSquads[0]}
-          squadRight={sortedSquads[1]}
+          squads={sortedSquads}
         />
         <TeamDetails
-          show={this.state.showTeamDetails && sortedSquads.length >= 2}
-          squad={sortedSquads[0]}
+          squads={sortedSquads}
         />
         {/*<ObservedPlayer show={true} player={observedPlayer}/>*/}
         <ObservedTeam

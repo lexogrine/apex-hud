@@ -10,6 +10,11 @@
   justify-content: center;
   align-items: center;
   z-index: 20;
+  transition: opacity 0.5s;
+  opacity: 0;
+  &.show {
+    opacity: 1;
+  }
 }
 
 .team-panel {

@@ -1,3 +1,39 @@
 [
-  
+    {
+        "label": "Team Display",
+        "name":"team_display",
+        "inputs": [
+            {
+                "type": "team",
+                "name": "team",
+                "label": "Select team to display"
+            },
+            {
+                "type": "checkbox",
+                "name": "show",
+                "label": "Show team summary"
+            }
+        ]
+    },
+    {
+        "label": "Team Comparison",
+        "name":"team_comparison",
+        "inputs": [
+            {
+                "type": "team",
+                "name": "team_1",
+                "label": "Select team #1"
+            },
+            {
+                "type": "team",
+                "name": "team_2",
+                "label": "Select team #2"
+            },
+            {
+                "type": "checkbox",
+                "name": "show",
+                "label": "Compare Teams"
+            }
+        ]
+    }
 ]

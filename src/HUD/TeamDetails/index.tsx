@@ -5,17 +5,36 @@ import {
   PlayerWaiting,
   Squad,
 } from "apexlegendsgsi/types/apexlegends";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { PlayerExtension } from "apexlegendsgsi/types/interfaces";
+import { configs } from "../../App";
 
-const TeamDetails = ({ squad, show }: { squad: Squad; show: boolean }) => {
-  if (!show) return <div></div>;
+const TeamDetails = ({ squads }: { squads: Squad[] }) => {
+  const [ show, setShow ] = useState(false);
+  const [ teamId, setTeamId ] = useState('');
+
+  useEffect(() => {
+    const onData = (data: any) => {
+      if(!data || !data.team_display) return;
+      const teamId = data.team_display.team.id;
+      setTeamId(teamId || '');
+      setShow(data.team_display.show);
+    }
+    configs.onChange(onData);
+    onData(configs.data);
+
+    return () => {
+      configs.listeners = configs.listeners.filter(cfg => cfg !== onData);
+    }
+  }, []);
+
+  const squad = squads.find(sq => sq.teamExtension && sq.teamExtension.id === teamId);
   return (
-    <div className="team-details">
-      <h3>{squad.teamExtension ? squad.teamExtension.name : squad.name}</h3>
+    <div className={`team-details ${show && squad ? 'show':''}`}>
+      <h3>{!squad ? '' : squad.teamExtension ? squad.teamExtension.name : squad.name}</h3>
       <div className="players">
-      {(squad.players.filter((player) =>
+      {(!squad ? [] : squad.players.filter((player) =>
         player.type === "playing"
       ) as ({ name: string; extension?: PlayerExtension } & (PlayerPlaying))[])
         .map((x) => (

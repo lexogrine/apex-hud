@@ -96,19 +96,6 @@ class App extends React.Component<any, { game: ApexLegendsState | null, match: M
 			hudIdentity.name = name;
 		}
 
-		configs.onChange((data: any) => {
-			let theme = 'proNeon';
-			if(data && data.view && data.view.theme_select) {
-				theme = data.view.theme_select;
-			}
-			if(theme === 'default'){
-				theme = 'proNeon';
-			}
-			const root = document.getElementById("root");
-			if(!root) return;
-			root.className = theme;
-			//this.setState({ theme });
-		})
 		socket.on("readyToRegister", () => {
 			socket.emit("register", name, isDev, 'apexlegends');
 		});

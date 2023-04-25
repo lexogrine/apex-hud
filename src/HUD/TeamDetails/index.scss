@@ -18,6 +18,11 @@
     gap: 90px;
     justify-content: center;
   }
+  transition: opacity 0.5s;
+  opacity: 0;
+  &.show {
+    opacity: 1;
+  }
 }
 
 .player-tab {

@@ -6,7 +6,6 @@ import "./index.scss";
 const TopbarScoreboard = ({ show, squads, startAt, count }: { show: boolean, squads: Squad[], startAt: number, count: number }) => {
   if (!show) return <div></div>;
   const startIndex = startAt % squads.length;
-  console.log(squads)
   return <div className="topbar-scoreboard">
     {squads.filter(x => x.name !== "Spectator").map((x, i) => i >= startIndex && i < startIndex + count ? (
       <div className={`topbar-team order-${i+1}`}>
