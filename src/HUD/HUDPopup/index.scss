@@ -87,4 +87,15 @@
   display: block;
   position: absolute;
   top: 420px;
+  left: -100%;
+  transition: left 0.5s;
+  img.logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-right: 30px;
+  }
+  &.show {
+    left: 0;
+  }
 }

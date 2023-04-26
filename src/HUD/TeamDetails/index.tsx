@@ -9,13 +9,19 @@ import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { PlayerExtension } from "apexlegendsgsi/types/interfaces";
 import { configs } from "../../App";
+import { Logo } from "../Logo";
 
 const TeamDetails = ({ squads }: { squads: Squad[] }) => {
   const [ show, setShow ] = useState(false);
   const [ teamId, setTeamId ] = useState('');
+  const [ tname, setName ] = useState('');
 
   useEffect(() => {
     const onData = (data: any) => {
+      if(!data) return;
+      if(data.general){
+        setName(data.general.tournament_name || '');
+      }
       if(!data || !data.team_display) return;
       const teamId = data.team_display.team.id;
       setTeamId(teamId || '');
@@ -32,7 +38,8 @@ const TeamDetails = ({ squads }: { squads: Squad[] }) => {
   const squad = squads.find(sq => sq.teamExtension && sq.teamExtension.id === teamId);
   return (
     <div className={`team-details ${show && squad ? 'show':''}`}>
-      <h3>{!squad ? '' : squad.teamExtension ? squad.teamExtension.name : squad.name}</h3>
+      <div className="tournament-title-bar">{tname}</div>
+      <h3><Logo  squad={squad}/> {!squad ? '' : squad.teamExtension ? squad.teamExtension.name : squad.name}</h3>
       <div className="players">
       {(!squad ? [] : squad.players.filter((player) =>
         player.type === "playing"

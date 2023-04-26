@@ -1,30 +1,34 @@
 import { ApexLegendsState, Squad } from "apexlegendsgsi/types/apexlegends";
 import React from "react";
-import { uuid } from "uuidv4";
+import { v4 } from "uuid";
 import { Match } from "../../api/interfaces";
 import { actions, ApexLegends } from "../../App";
 import FullScreenScoreboard from "../FullScreenScoreboard";
-import HUDPopup, { EventTypes } from "../HUDPopup";
+import HUDPopup, { ApexEvent, EventTypes } from "../HUDPopup";
 import ObservedPlayer from "../ObservedPlayer";
 import ObservedTeam from "../ObservedTeam";
 import TeamComparison from "../TeamComparison";
 import TeamDetails from "../TeamDetails";
 import TopbarScoreboard from "../TopbarScoreboard";
+import { Logo } from "../Logo";
 
 interface Props {
   game: ApexLegendsState;
   match: Match | null;
 }
-
 interface State {
   showFullScreenScoreboard: boolean;
   showTeamComparison: boolean;
   showTeamDetails: boolean;
   currentlyShownLeaderboardPart: number;
-  events: { title: string; content: string; id: string; type: EventTypes }[];
+  events: ApexEvent[];
   leaderBoardTeams: Squad[];
+  event: ApexEvent | null;
+  showEvent: boolean,
   leaderBoardMode: "top3" | "continous";
 }
+
+const wait = (ms: number) => new Promise(r => setTimeout(r, ms));
 
 const TOPBAR_LEADERBOARD_TIME_DISPLAYING = 6;
 
@@ -40,7 +44,9 @@ export default class Layout extends React.Component<Props, State> {
       showTeamDetails: false,
       currentlyShownLeaderboardPart: 0,
       events: [],
+      event: null,
       leaderBoardTeams: [],
+      showEvent: false,
       leaderBoardMode: "top3",
     };
   }
@@ -88,15 +94,37 @@ export default class Layout extends React.Component<Props, State> {
       this.setState({ showTeamDetails: !this.state.showTeamDetails });
     });
 
-    const addEvent = (title: string, content: string, type: EventTypes) => {
-      const id = uuid();
-      this.setState({
-        events: [...this.state.events, { title, content, id, type }],
+    const showNextEvent = async () => {
+      if(this.state.showEvent || this.state.event) return;
+
+      const nextEvent = this.state.events[0];
+      if(!nextEvent) return;
+
+      this.setState({ showEvent: true, event: nextEvent });
+      
+      await wait(4500);
+
+      this.setState({ showEvent: false }, async () => {
+        await wait(550);
+        this.setState({ events: this.state.events.filter(ev => ev !== nextEvent), event: null }, () => {
+          showNextEvent();
+        })
       });
-      setTimeout(() => {
-        this.setState({ events: this.state.events.filter((x) => x.id !== id) });
-      }, 5000);
+
+    }
+
+    const addEvent = (title: string, content: string, type: EventTypes, icon?: React.ReactNode) => {
+      const id = v4();
+      const newEvent = { title, content, id, type, icon }
+      console.log(`NEW EVENT`, newEvent);
+      this.setState({
+        events: [...this.state.events, newEvent],
+      }, () => {
+          showNextEvent();
+      });
+
     };
+    const getTeamByName =
     ApexLegends.on("playerKilled", (event) => {
       addEvent(
         "Player killed!",
@@ -105,10 +133,15 @@ export default class Layout extends React.Component<Props, State> {
       );
     });
     ApexLegends.on("squadEliminated", (event) => {
+      const squad = this.props.game.squads.find(sq => sq.players.some(player => player.name === event.players[0].name));
+      console.log("UWAGA");
+      if(!squad) return console.log("SHITTTT");
+      console.log("JEST GIT");
       addEvent(
         "Squad eliminated!",
-        `${event.players[0].teamName} was defeated!`,
+        `${squad.name} eliminated`,
         "squadEliminated",
+        <Logo squad={squad} />
       );
     });
     ApexLegends.on("inventoryPickUp", (event) => {
@@ -157,7 +190,7 @@ export default class Layout extends React.Component<Props, State> {
           squad={observedSquad}
           observed={observedPlayer ? observedPlayer.name : undefined}
         />
-        <HUDPopup show={true} events={this.state.events} />
+        <HUDPopup show={this.state.showEvent} events={this.state.event ? [this.state.event] : []} />
       </div>
     );
   }

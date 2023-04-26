@@ -1,6 +1,8 @@
 import { Squad } from "apexlegendsgsi/types/apexlegends";
 import React from "react";
 import "./index.scss";
+import { getTeamName } from "../utils";
+import { Logo } from "../Logo";
 
 const ObservedTeam = (
   { squad, show, observed }: {
@@ -20,7 +22,7 @@ const ObservedTeam = (
     <>
     <div className="observed-team-details">
       <div className="info">
-        <div className="name"><div className="order">1</div>{squad.teamExtension ? squad.teamExtension.name : squad.name}</div>
+        <div className="name"><div className="order">1</div><Logo squad={squad} />{getTeamName(squad)}</div>
         <div className="kills">{ squad.players.reduce((p, x) => p + (x.type === 'playing' ? x.kills : 0), 0)}</div>
       </div>
       <div className="team-border"/>

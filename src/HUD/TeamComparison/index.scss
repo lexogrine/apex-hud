@@ -22,3 +22,11 @@
   flex-direction: column;
   flex-grow: 1;
 }
+.team-panel-heading {
+  img.logo {
+    width: 120px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 40px;
+  }
+}

@@ -5,16 +5,6 @@
     "description": "Toggle Fullscreen Scoreboard"
   },
   {
-    "bind": "2",
-    "action": "toggleTeamComparison",
-    "description": "Toggle Team Comparison"
-  },
-  {
-    "bind": "3",
-    "action": "toggleTeamDetails",
-    "description": "Toggle Team Details"
-  },
-  {
     "bind": "4",
     "action": "toggleLeaderboardMode",
     "description": "Toggle Top Leaderboard Mode"

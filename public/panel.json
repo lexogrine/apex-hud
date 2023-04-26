@@ -1,5 +1,16 @@
 [
     {
+        "label": "General",
+        "name":"general",
+        "inputs": [
+            {
+                "type": "text",
+                "name": "tournament_name",
+                "label": "Fill tournament name"
+            }
+        ]
+    },
+    {
         "label": "Team Display",
         "name":"team_display",
         "inputs": [

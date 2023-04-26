@@ -2,6 +2,7 @@ import { AbilityLog, ItemLog, Squad } from "apexlegendsgsi/types/apexlegends";
 import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { configs } from "../../App";
+import { Logo } from "../Logo";
 
 const TeamPanel = ({ squad, right }: { squad?: Squad; right: boolean }) => {
   const damageDone = !squad ? 0 : squad.players.reduce(
@@ -12,8 +13,8 @@ const TeamPanel = ({ squad, right }: { squad?: Squad; right: boolean }) => {
     0,
   );
   return (
-    <div>
-      <div style={{ fontSize: '78px', textAlign: 'center', marginBottom: 90, textTransform: 'uppercase'}}>{!squad ? null : squad.name}</div>
+    <div className="team-panel-heading">
+      <div style={{ fontSize: '78px', textAlign: 'center', marginBottom: 90, textTransform: 'uppercase'}}><Logo squad={squad} /> {!squad ? null : (squad.teamExtension ? squad.teamExtension.name : squad.name)}</div>
     <div
       className="player-tab team-based"
       style={right ? { float: "right" } : { float: "left" }}
@@ -94,12 +95,17 @@ const TeamComparison = (
   },
 ) => {
   const [ show, setShow ] = useState(false);
+  const [ tname, setName ] = useState('');
   const [ leftTeamId, setLeftTeamId ] = useState('');
   const [ rightTeamId, setRightTeamId ] = useState('');
   
 
   useEffect(() => {
     const onData = (data: any) => {
+      if(!data) return;
+      if(data.general){
+        setName(data.general.tournament_name || '');
+      }
       if(!data || !data.team_comparison) return;
       setLeftTeamId(data.team_comparison.team_1.id || '');
       setRightTeamId(data.team_comparison.team_2.id || '');
@@ -118,6 +124,7 @@ const TeamComparison = (
 
   return (
     <div className={`team-comparison ${show ? 'show':''}`}>
+      <div className="tournament-title-bar">{tname}</div>
       <TeamPanel right={false} squad={squadLeft} />
       <TeamPanel right={true} squad={squadRight} />
     </div>
