@@ -21,8 +21,6 @@ const months = [
   "December"
 ];
 
-const currentMonth = new Date().getMonth();
-const day = new Date().getDate();
 
 const TopbarScoreboard = ({ show, squads, startAt, count }: { show: boolean, squads: Squad[], startAt: number, count: number }) => {
   const [ tname, setName ] = useState('');
@@ -40,10 +38,9 @@ const TopbarScoreboard = ({ show, squads, startAt, count }: { show: boolean, squ
   }, []);
   const startIndex = startAt % squads.length;
   return <div className="topbar-scoreboard" style={{ opacity: show ? 1 : 0 }}>
-    <div className={`topbar-team tournament-info`}>
-      {tname ? <strong>{tname}</strong> : null }
-        <div className="date">{months[currentMonth]} {day}</div>
-    </div>
+    
+      {tname ? <div className={`topbar-team tournament-info`}><strong>{tname}</strong></div> : null }
+    
     {squads.filter(x => x.name !== "Spectator").map((x, i) => i >= startIndex && i < startIndex + count ? (
       <div className={`topbar-team order-${i+1}`}>
         <div className="order">{i+1}</div><Logo squad={x} /> {getTeamName(x)} {/*x.players.reduce((p, x) => p + (x.type === 'playing' ? x.kills : 0), 0)*/}
