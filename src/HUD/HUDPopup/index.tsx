@@ -7,7 +7,7 @@ export type ApexEvent = { title: string; content: string; id: string; type: Even
 
 
 const formatter: { [K in EventTypes]?: (content: string) => { text: string, icon: React.ReactNode } } = {
-  squadEliminated: (content) => ({ text: `${content} eliminated`, icon: <div className="event-icon"><SquadEliminationIcon height={27} width={20} /></div> }),
+  squadEliminated: (content) => ({ text: `${content}`, icon: <div className="event-icon"><SquadEliminationIcon height={27} width={20} /></div> }),
   ringStartClosing: () => ({ text: `RING IS CLOSING`, icon: <div className="event-icon"><div className="circle"></div></div> }),
   ringFinishedClosing: () => ({ text: `RING IS CLOSED`, icon: <div className="event-icon"><div className="circle"></div></div> }),
   playerKilled: (content) => ({ text: content, icon: null }),
