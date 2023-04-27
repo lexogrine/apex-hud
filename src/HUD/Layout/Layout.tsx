@@ -78,7 +78,7 @@ export default class Layout extends React.Component<Props, State> {
                 : this.state.leaderBoardTeams,
               currentlyShownLeaderboardPart: newSection,
             });
-          }, TOPBAR_LEADERBOARD_TIME_DISPLAYING);
+          }, TOPBAR_LEADERBOARD_TIME_DISPLAYING*1000);
         }
       });
     });
@@ -124,14 +124,13 @@ export default class Layout extends React.Component<Props, State> {
       });
 
     };
-    const getTeamByName =
-    ApexLegends.on("playerKilled", (event) => {
+    /*ApexLegends.on("playerKilled", (event) => {
       addEvent(
         "Player killed!",
         `${event.attacker.name} killed ${event.victim.name} using ${event.weapon}`,
         "playerKilled",
       );
-    });
+    });*/
     ApexLegends.on("squadEliminated", (event) => {
       const squad = this.props.game.squads.find(sq => sq.players.some(player => player.name === event.players[0].name));
       console.log("UWAGA");
