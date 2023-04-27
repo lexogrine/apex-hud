@@ -3,7 +3,7 @@ import "./index.scss";
 import { Events } from 'apexlegendsgsi/types/events';
 import { ReactComponent as SquadEliminationIcon } from './squadEliminatedIcon.svg'
 export type EventTypes = keyof Events;
-export type ApexEvent = { title: string; content: string; id: string; type: EventTypes, icon?: React.ReactNode }
+export type ApexEvent = { content: string; id: string; type: EventTypes, icon?: React.ReactNode }
 
 
 const formatter: { [K in EventTypes]?: (content: string) => { text: string, icon: React.ReactNode } } = {
@@ -14,7 +14,7 @@ const formatter: { [K in EventTypes]?: (content: string) => { text: string, icon
   inventoryPickUp: (content) => ({ text: content, icon: null })
 };
 
-const Event = ({title, content, type, customIcon }: {title: string, content: string, type: EventTypes, customIcon?: React.ReactNode}) => {
+const Event = ({ content, type, customIcon }: { content: string, type: EventTypes, customIcon?: React.ReactNode}) => {
   const eventFormatter = formatter[type];
 
   return <div className={`event ${type}`}>
@@ -26,7 +26,7 @@ const Event = ({title, content, type, customIcon }: {title: string, content: str
 const HUDPopup = ({events, show} : {events: ApexEvent[], show: boolean}) => {
 
   return <div className={`hud-popup-panel ${show ? 'show':''}`}> 
-    {events.map(x => <Event title={x.title} content={x.content} type={x.type} customIcon={x.icon}/>)}
+    {events.map(x => <Event content={x.content} type={x.type} customIcon={x.icon}/>)}
   </div>;
 }
 

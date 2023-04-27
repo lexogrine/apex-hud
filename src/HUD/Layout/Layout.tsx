@@ -127,9 +127,9 @@ export default class Layout extends React.Component<Props, State> {
 
     }
 
-    const addEvent = (title: string, content: string, type: EventTypes, icon?: React.ReactNode) => {
+    const addEvent = (content: string, type: EventTypes, icon?: React.ReactNode) => {
       const id = v4();
-      const newEvent = { title, content, id, type, icon }
+      const newEvent = { content, id, type, icon }
       console.log(`NEW EVENT`, newEvent);
       this.setState({
         events: [...this.state.events, newEvent],
@@ -138,33 +138,27 @@ export default class Layout extends React.Component<Props, State> {
       });
 
     };
-    /*ApexLegends.on("playerKilled", (event) => {
+    ApexLegends.on("ringStartClosing", () => {
       addEvent(
-        "Player killed!",
-        `${event.attacker.name} killed ${event.victim.name} using ${event.weapon}`,
-        "playerKilled",
-      );
-    });*/
+        'Ring closing',
+        'ringStartClosing',
+      )
+    });
+    ApexLegends.on("ringFinishedClosing", () => {
+      addEvent(
+        'Ring closed',
+        'ringFinishedClosing',
+      )
+    });
     ApexLegends.on("squadEliminated", (event) => {
       const squad = this.props.game.squads.find(sq => sq.players.some(player => player.name === event.players[0].name));
-      console.log("UWAGA");
-      if(!squad) return console.log("SHITTTT");
-      console.log("JEST GIT");
+      if(!squad) return;
       addEvent(
-        "Squad eliminated!",
         `${squad.name} eliminated`,
         "squadEliminated",
         <Logo squad={squad} />
       );
     });
-    ApexLegends.on("inventoryPickUp", (event) => {
-      addEvent(
-        "Item picked up!",
-        `${event.player.name} picked up ${event.quantity}x ${event.item}!`,
-        "inventoryPickUp",
-      );
-    });
-    console.log("apex legends sdasdaf");
   }
 
   render() {
