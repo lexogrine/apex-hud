@@ -14,7 +14,7 @@ const TeamPanel = ({ squad, right }: { squad?: Squad; right: boolean }) => {
   );
   return (
     <div className="team-panel-heading">
-      <div style={{ fontSize: '78px', textAlign: 'center', marginBottom: 90, textTransform: 'uppercase'}}><Logo squad={squad} /> {!squad ? null : (squad.teamExtension ? squad.teamExtension.name : squad.name)}</div>
+      <div style={{ fontSize: '78px', textAlign: 'center', marginBottom: 90, textTransform: 'uppercase', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Logo squad={squad} /> {!squad ? null : (squad.teamExtension ? squad.teamExtension.name : squad.name)}</div>
     <div
       className="player-tab team-based"
       style={right ? { float: "right" } : { float: "left" }}
