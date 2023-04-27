@@ -7,6 +7,21 @@
                 "type": "text",
                 "name": "tournament_name",
                 "label": "Fill tournament name"
+            },
+            {
+                "type": "select",
+                "name": "topboard_mode",
+                "label": "Top scoreboard mode",
+                "values": [
+                    {
+                        "name": "top3",
+                        "label": "Dynamic TOP 3"
+                    },
+                    {
+                        "name": "continous",
+                        "label": "All Teams"
+                    }
+                ]
             }
         ]
     },

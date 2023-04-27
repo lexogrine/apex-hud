@@ -3,10 +3,5 @@
     "bind": "1",
     "action": "toggleFullscreenScoreboard",
     "description": "Toggle Fullscreen Scoreboard"
-  },
-  {
-    "bind": "4",
-    "action": "toggleLeaderboardMode",
-    "description": "Toggle Top Leaderboard Mode"
   }
 ]

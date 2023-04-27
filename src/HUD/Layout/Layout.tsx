@@ -2,10 +2,9 @@ import { ApexLegendsState, Squad } from "apexlegendsgsi/types/apexlegends";
 import React from "react";
 import { v4 } from "uuid";
 import { Match } from "../../api/interfaces";
-import { actions, ApexLegends } from "../../App";
+import { actions, ApexLegends, configs } from "../../App";
 import FullScreenScoreboard from "../FullScreenScoreboard";
 import HUDPopup, { ApexEvent, EventTypes } from "../HUDPopup";
-import ObservedPlayer from "../ObservedPlayer";
 import ObservedTeam from "../ObservedTeam";
 import TeamComparison from "../TeamComparison";
 import TeamDetails from "../TeamDetails";
@@ -30,7 +29,7 @@ interface State {
 
 const wait = (ms: number) => new Promise(r => setTimeout(r, ms));
 
-const TOPBAR_LEADERBOARD_TIME_DISPLAYING = 6;
+const TOPBAR_LEADERBOARD_TIME_DISPLAYING = 4;
 
 const ignoreSpectator = (squads: Squad[]) =>
   squads.filter((squad) => squad.name !== "Spectator");
@@ -53,7 +52,8 @@ export default class Layout extends React.Component<Props, State> {
   componentDidMount() {
     let loop: NodeJS.Timeout | null = null;
 
-    actions.on("toggleLeaderboardMode", () => {
+
+    const toggleLeaderBoardMode = () => {
       if (loop) {
         clearInterval(loop);
       }
@@ -81,7 +81,21 @@ export default class Layout extends React.Component<Props, State> {
           }, TOPBAR_LEADERBOARD_TIME_DISPLAYING*1000);
         }
       });
-    });
+    };
+
+
+    const onData = (data: any) => {
+      if(!data || !data.general) return;
+      const newTopboardMode =  data.general.topboard_mode || 'top3';
+      if(this.state.leaderBoardMode === newTopboardMode) return;
+
+      toggleLeaderBoardMode();
+    }
+
+
+    configs.onChange(onData);
+    onData(configs.data);
+
     actions.on("toggleFullscreenScoreboard", () => {
       this.setState({
         showFullScreenScoreboard: !this.state.showFullScreenScoreboard,

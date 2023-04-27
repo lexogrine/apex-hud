@@ -6,22 +6,6 @@ import { getTeamName } from "../utils";
 import { Logo } from "../Logo";
 import { configs } from "../../App";
 
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
-
-
 const TopbarScoreboard = ({ show, squads, startAt, count }: { show: boolean, squads: Squad[], startAt: number, count: number }) => {
   const [ tname, setName ] = useState('');
   useEffect(() => {
