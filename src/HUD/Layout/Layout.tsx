@@ -150,13 +150,23 @@ export default class Layout extends React.Component<Props, State> {
         'ringFinishedClosing',
       )
     });
-    ApexLegends.on("squadEliminated", (event) => {
+    ApexLegends.on("squadEliminated", async (event) => {
       const squad = this.props.game.squads.find(sq => sq.players.some(player => player.name === event.players[0].name));
       if(!squad) return;
+      const amountOfSquadsRemainings = this.props.game.squads.filter(squad => squad.name !== "Spectator" && squad.players.length > 0 && squad.players.some(player => player.type === "playing" && player.hp > 0)).length;
       addEvent(
         `${squad.name} eliminated`,
         "squadEliminated",
         <Logo squad={squad} />
+      );
+      if(![3, 5, 10, 15].includes(amountOfSquadsRemainings)){
+        return;
+      }
+      await wait(100);
+      addEvent(
+        `${amountOfSquadsRemainings}`,
+        'squadsRemaining',
+
       );
     });
   }
