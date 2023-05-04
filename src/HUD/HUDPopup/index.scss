@@ -67,6 +67,12 @@
     border-radius: 50%;
     border: 3px solid white;
   }
+  &.squadsRemaining {
+    .content > div {
+      font-size: 39px;
+      margin-right: 17px;
+    }
+  }
   &.ringStartClosing {
     .circle {
       animation: Pulse 1.5s infinite;
