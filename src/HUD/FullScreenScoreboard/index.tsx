@@ -7,7 +7,6 @@ import { getTeamName } from "../utils";
 import { Logo } from "../Logo";
 
 const FullScreenScoreboard = ({ show, squads }: { show: boolean, squads: Squad[] }) => {
-  if (!show) return <div></div>;
   const [ squad1, squad2, squad3, ...restSquads ] = squads as Squad[];
   const top3: Squad[] = [];
   if(squad1) top3.push(squad1);
@@ -17,7 +16,7 @@ const FullScreenScoreboard = ({ show, squads }: { show: boolean, squads: Squad[]
   const firstHalf = [...allRestSquads].splice(0, Math.ceil(allRestSquads.length/2));
   const secondHalf = [...allRestSquads].splice(Math.ceil(allRestSquads.length/2));
 
-  return <div className="full-screen-scoreboard">
+  return <div className={`full-screen-scoreboard ${show ? 'show':''}`}>
     <LexogrineLogo width={210} height={30}/>
     <div className="top-3-teams">
       {
