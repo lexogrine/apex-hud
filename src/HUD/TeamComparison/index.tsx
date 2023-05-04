@@ -8,7 +8,7 @@ const TeamPanel = ({ squad, right }: { squad?: Squad; right: boolean }) => {
   const damageDone = !squad ? 0 : squad.players.reduce(
     (p, x) =>
       x.type === "playing"
-        ? x.damageLog.map((x) => x.damage).reduce((pr, dam) => dam + pr, 0)
+        ? p + x.damageLog.map((x) => x.damage).reduce((pr, dam) => dam + pr, 0)
         : p,
     0,
   );
