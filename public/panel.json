@@ -11,7 +11,7 @@
             {
                 "type": "select",
                 "name": "topboard_mode",
-                "label": "Top scoreboard mode",
+                "label": "Top scoreboard mode (Default: Dynamic TOP 3)",
                 "values": [
                     {
                         "name": "top3",

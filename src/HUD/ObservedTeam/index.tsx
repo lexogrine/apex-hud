@@ -5,10 +5,11 @@ import { getTeamName } from "../utils";
 import { Logo } from "../Logo";
 
 const ObservedTeam = (
-  { squad, show, observed }: {
+  { squad, show, observed, order }: {
     observed?: string;
     squad: Squad | undefined;
     show: boolean;
+    order: number;
   },
 ) => {
   if (!show || !squad) return <div></div>;
@@ -22,7 +23,7 @@ const ObservedTeam = (
     <>
     <div className="observed-team-details">
       <div className="info">
-        <div className="name"><div className="order">1</div><Logo squad={squad} />{getTeamName(squad)}</div>
+        <div className="name"><div className="order">{order}</div><Logo squad={squad} />{getTeamName(squad)}</div>
         <div className="kills">{ squad.players.reduce((p, x) => p + (x.type === 'playing' ? x.kills : 0), 0)}</div>
       </div>
       <div className="team-border"/>

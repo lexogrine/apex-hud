@@ -116,7 +116,7 @@ class App extends React.Component<any, { game: ApexLegendsState | null, match: M
 			}
 		});
 
-		ApexLegends.on('data', data => {
+		ApexLegends.on('data', (data: any) => {
 			if (!this.state.game) this.verifyPlayers(data);
 			this.setState({ game: data });
 		});

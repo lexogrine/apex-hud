@@ -150,12 +150,12 @@ export default class Layout extends React.Component<Props, State> {
         'ringFinishedClosing',
       )
     });
-    ApexLegends.on("squadEliminated", async (event) => {
+    ApexLegends.on("squadEliminated", async (event: any) => {
       const squad = this.props.game.squads.find(sq => sq.players.some(player => player.name === event.players[0].name));
       if(!squad) return;
       const amountOfSquadsRemainings = this.props.game.squads.filter(squad => squad.name !== "Spectator" && squad.players.length > 0 && squad.players.some(player => player.type === "playing" && player.hp > 0)).length;
       addEvent(
-        `${squad.name} eliminated`,
+        `${squad.teamExtension ? squad.teamExtension.name : squad.name} eliminated`,
         "squadEliminated",
         <Logo squad={squad} />
       );
@@ -206,6 +206,7 @@ export default class Layout extends React.Component<Props, State> {
           show={true}
           squad={observedSquad}
           observed={observedPlayer ? observedPlayer.name : undefined}
+          order={!observedSquad ? 0 : sortedSquads.indexOf(observedSquad)+1}
         />
         <HUDPopup show={this.state.showEvent} events={this.state.event ? [this.state.event] : []} />
       </div>

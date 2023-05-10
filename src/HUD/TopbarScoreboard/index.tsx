@@ -28,8 +28,7 @@ const TopbarScoreboard = ({ show, squads, startAt, count }: { show: boolean, squ
     {squads.filter(x => x.name !== "Spectator").map((x, i) => i >= startIndex && i < startIndex + count ? (
       <div className={`topbar-team order-${i+1}`}>
         <div className="order">{i+1}</div>
-        <Logo squad={x} /> {getTeamName(x)} 
-        <div className="kills">{ x.players.reduce((p, x) => p + (x.type === 'playing' ? x.kills : 0), 0)}</div>
+        <Logo squad={x} /> {getTeamName(x)}: { x.players.reduce((p, x) => p + (x.type === 'playing' ? x.kills : 0), 0)}
         <div className="border-bottom" />
       </div>
     ): null)}
