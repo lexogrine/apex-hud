@@ -10,7 +10,7 @@
     "@types/react": "16.9.9",
     "@types/react-chartjs-2": "^2.5.7",
     "@types/react-dom": "16.9.2",
-		"apexlegendsgsi": "github:lexogrine/apexlegendsgsi",
+    "apexlegendsgsi": "github:lexogrine/apexlegendsgsi",
     "heatmap.js": "^2.0.5",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
