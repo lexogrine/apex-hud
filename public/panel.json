@@ -14,10 +14,6 @@
                 "label": "Top scoreboard mode (Default: Dynamic TOP 3)",
                 "values": [
                     {
-                        "name": "top3",
-                        "label": "Dynamic TOP 3"
-                    },
-                    {
                         "name": "continous",
                         "label": "All Teams"
                     }
